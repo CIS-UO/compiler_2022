@@ -123,11 +123,11 @@ use our assembler to turn it into Duck Machine object code.
 
 Maybe not *super* easy ... but we don't need to rewrite the 
 parser.  The existing parser creates tree structures 
-using the Expr classes in ```expr.py```.  The interpreter 
-calls the ```eval``` methods on nodes in the tree.  A 
-compiler can work similarly, except instead of calling ```eval```, 
+using the Expr classes in `expr.py`.  The interpreter 
+calls the `eval` methods on nodes in the tree.  A 
+compiler can work similarly, except instead of calling `eval`, 
 it can call a method that creates assembly code.  For example, 
-a the ```gen``` method of a ```Var``` node for variable 
+a the `gen` method of a `Var` node for variable 
 *x* might produce 
 
 ```
@@ -140,8 +140,8 @@ and the ```gen``` method of a ```Plus``` node might generate
     ADD   r5,r4,r5
 ```
 
-We just need to add the ```gen``` methods to classes 
-in ```expr.py```.  How hard can that be? 
+We just need to add the `gen` methods to classes 
+in `expr.py`.  How hard can that be? 
 
 ## Tactics for Code Generation 
 
@@ -151,8 +151,8 @@ from registers and store values in registers.  Thus, a major part
 of the job of generating code will be managing registers.  
 
 Aside from register management, the ```gen``` method will be a 
-lot like the ```eval``` method.  For example, if we have an expression
-node like ```Plus```, we'll generate code for the left-hand operand
+lot like the `eval` method.  For example, if we have an expression
+node like `Plus`, we'll generate code for the left-hand operand
 of the addition, then we'll generate code for the right-hand 
 operand, and then we'll generate code for adding the two 
 results.   
@@ -184,7 +184,7 @@ Note that we don't want to intersperse the memory holding
 variables (and even constants!) with instructions.  We need 
 to put them together at the end of the program.  We won't be 
 able to print all the assembly code on-the-fly as we execute 
-the ```gen``` methods.  We'll need a way of storing up different 
+the `gen` methods.  We'll need a way of storing up different 
 sets of information and then printing everyhing in the right 
 order when we are done.  
 
@@ -205,18 +205,18 @@ programs --- e.g., the first Mallard program we try to compile might be
 x = 7; 
 ```
 
-For that we'll need ```gen``` methods for ```IntConst```
-and ```Assign```, and maybe nothing else.  We'll gradually build
-up more of the language by adding ```gen``` methods for more 
+For that we'll need `gen` methods for ```IntConst```
+and `Assign`, and maybe nothing else.  We'll gradually build
+up more of the language by adding `gen` methods for more 
 classes. 
 
 ## Code Generation Context
 
-We noted above that the ```gen``` methods cannot just print 
+We noted above that the `gen` methods cannot just print 
 assembly code on the fly, because it needs to come out in an 
 order different than the order in which we call the ```gen``` methods. 
 In particular, we need to save up the variables and constants 
-and place the corresponding ```DATA``` lines at the end of the 
+and place the corresponding `DATA` lines at the end of the 
 program.  We also need to keep track of the registers in use.  
 We'll create a special kind of *context* object for both kinds
 of record keeping.   In general, the header of a ```gen``` 
@@ -230,17 +230,17 @@ method will look like:
         """
 ```
 
-The ```gen``` method will not return a value, but will 
+The `gen` method will not return a value, but will 
 add information to the context object, after passing that 
-context object to the ```gen``` methods of its operands. 
-While ```gen``` itself does not return a value, the code 
+context object to the `gen` methods of its operands. 
+While `gen` itself does not return a value, the code 
 it generates will typically produce a value in a register. 
-The ```target``` argument will tell it which register the
+The `target` argument will tell it which register the
 generated code should leave a value in.  The context object
 will also provide methods for allocating and deallocating 
 additional registers as needed. 
 
-We'll begin a ```codegen_context.py``` file in the usual 
+We'll begin a `codegen_context.py` file in the usual 
 way, with a header comment and logging configuration.  We'll 
 also import the *List* type constructor for type contracts. 
 
@@ -320,7 +320,7 @@ We'll add some methods to this Context class soon, but it will
 be easier to think about what they should look like if we start 
 building some ```gen``` methods that use them. 
 
-## Intconst.gen
+## IntConst.gen
 
 Recall that our first Mallard program is to be ```x = 7;```. 
 That will be represented as 
@@ -475,6 +475,11 @@ work with a multi-line (triple-quoted) string, which
 we will then break into a list of lines. The `Union` type
 from the `typing` module lets us say that input argument to 
 `crush` can be either `str` or `List[str]`. 
+
+_Spring 2021 warning: Watch out for the PyCharm
+bug that turns "\n" int "\\n" (and if you
+see FOUR backslashes, you know the bug has
+bitten you)._
 
 ```python
 """Test Codegen:
