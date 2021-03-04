@@ -18,16 +18,15 @@ our calculator did not have.
 * while loops are written like this: 
 
 ```
-while x do
+while x > 0 do
     fact = fact * x ;
     x = x - 1 ;
 od
 ```
 
-The condition can be any expression.  0 is interpreted as False, and any non-zero value is True.  The block between `do` and `od` is executed as long as the condition (`x` in the example) evaluates to a non-zero value. 
+The boolean expressions to control while loops are very limited:  Just a single comparison, which may be <, >, or ==.  
 
-* if/then/else/fi, with an optional else part.  The condition after the `if` is like the condition in the `while` loop, just an expression that evaluates to 0 for False or anything else for True.  In practice that means it is very hard to test for anything but equality.  Here's a program that does use an if/then/else to test for equality: 
-
+* if/then/else/fi, with an optional else part.  The condition after the `if` is like the condition in the `while` loop.   
 
 Mallard also has a ```read``` expression 
 for reading from the keyboard and a 
