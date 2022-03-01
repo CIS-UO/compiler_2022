@@ -38,4 +38,4 @@ code for a Duck Machine 2019W.
 
 ## How to proceed
 
-See docs/HOWTO-compile.md
+See [docs/HOWTO-compile.md](docs/HOWTO-compile.md)
