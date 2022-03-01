@@ -635,7 +635,9 @@ and we are using the variable name instead of the constant value.
 We will also need to add the variable declarations to ```Context.getlines```. 
 It doesn't really matter whether they come before or after the constants, 
 but to make testing easier I'll stipulate that DATA lines for variables 
-come after DATA lines for constants.  I'll leave that to you.  
+come after DATA lines for constants. By default, the value of 
+a variable should be 0 -- it's fine to hard-code that value when you 
+create the variable's DATA line.  I'll leave that to you.  
 
 We can test it in the same way: 
 
