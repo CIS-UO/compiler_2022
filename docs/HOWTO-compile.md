@@ -701,7 +701,7 @@ file:
 
 ```python
     context = codegen_context.Context()
-    context.add_line("# Lovingly crafted by the robots of CIS 211, Spring 2019")
+    context.add_line("# Lovingly crafted by the robots of CIS 211, Winter 2022")
     context.add_line(f"# {datetime.datetime.now()} from {args.sourcefile.name}")
     context.add_line("#")
 ```
@@ -763,12 +763,12 @@ We can run the compiler on our tiny example program in a
 terminal window: 
 
 ```commandline
-# Lovingly crafted by the robots of CIS 211, Spring 2019
-# 2019-05-27 21:34:12.758372 from mallard/littlest.mal
+# Lovingly crafted by the robots of CIS 211, Winter 2022
+# 2022-03-03 14:27:59.019884 from mallard/littlest.mal
 #
     LOAD r14,const_7
    STORE  r14,var_x
-        HALT  r0,r0,r0
+	HALT  r0,r0,r0
 const_7:  DATA 7
 var_x:   DATA 0
 #Compilation complete
@@ -801,8 +801,8 @@ like this:
 
 ```commandline
 $ python3 compile.py mallard/seq.mal 
-# Lovingly crafted by the robots of CIS 211, Spring 2019
-# 2019-05-29 09:06:38.740161 from mallard/seq.mal
+# Lovingly crafted by the robots of CIS 211, Winter 2022
+# 2022-03-03 14:28:28.593218 from mallard/seq.mal
 #
     LOAD r14,const_7
    STORE  r14,var_x
@@ -810,7 +810,7 @@ $ python3 compile.py mallard/seq.mal
    STORE  r14,var_y
     LOAD r14,var_y
    STORE  r14,var_z
-        HALT  r0,r0,r0
+	HALT  r0,r0,r0
 const_7:  DATA 7
 var_x:   DATA 0
 var_y:   DATA 0
@@ -968,8 +968,8 @@ again at the terminal like this:
 
 ```commandline
 $ python3 compile.py mallard/binops.mal 
-# Lovingly crafted by the robots of CIS 211, Spring 2019
-# 2019-05-29 09:08:02.064640 from mallard/binops.mal
+# Lovingly crafted by the robots of CIS 211, Winter 2022
+# 2022-03-03 14:28:57.611254 from mallard/binops.mal
 #
     LOAD r14,const_7
    STORE  r14,var_x
@@ -987,7 +987,7 @@ $ python3 compile.py mallard/binops.mal
    DIV  r13,r13,r12
    SUB  r14,r14,r13
    STORE  r14,var_q
-        HALT  r0,r0,r0
+	HALT  r0,r0,r0
 const_7:  DATA 7
 var_q:   DATA 0
 var_x:   DATA 0
@@ -1036,8 +1036,8 @@ again from the terminal command line
 
 ```commandline
 $ python3 compile.py mallard/print.mal 
-# Lovingly crafted by the robots of CIS 211, Spring 2019
-# 2019-05-29 09:10:09.925726 from mallard/print.mal
+# Lovingly crafted by the robots of CIS 211, Winter 2022
+# 2022-03-03 14:29:20.189993 from mallard/print.mal
 #
     LOAD r14,const_7
    STORE  r14,var_x
@@ -1047,7 +1047,7 @@ $ python3 compile.py mallard/print.mal
     LOAD r13,var_y
    ADD  r14,r14,r13
    STORE  r14,r0,r0[511]
-        HALT  r0,r0,r0
+	HALT  r0,r0,r0
 const_7:  DATA 7
 const_8:  DATA 8
 var_x:   DATA 0
@@ -1063,9 +1063,9 @@ to your projects.
 ```commandline
 $ python3 compile.py mallard/print.mal mallard/print.asm
 #Compilation complete
-$ python3 ../assembler_2019/assembler_phase1.py mallard/print.asm mallard/print.dasm
-$ python3 ../assembler_2019/assembler_phase2.py mallard/print.dasm mallard/print.obj
-$ python3 ../dm2019/duck_machine.py mallard/print.obj
+$ python3 ./assembler/assembler_phase1.py mallard/print.asm mallard/print.dasm
+$ python3 ./assembler/assembler_phase2.py mallard/print.dasm mallard/print.obj
+$ python3 ../project5/duck_machine.py mallard/print.obj
 Quack!: 15
 Halted
 ```
@@ -1090,9 +1090,9 @@ We will compile and run the program as before:
 ```commandline
 $ python3 compile.py mallard/read_add_print.mal mallard/read_add_print.asm
 #Compilation complete
-$ python3 ../assembler_2019/assembler_phase1.py mallard/read_add_print.asm mallard/read_add_print.dasm
-$ python3 ../assembler_2019/assembler_phase2.py mallard/read_add_print.dasm mallard/read_add_print.obj
-$ python3 ../dm2019/duck_machine.py mallard/read_add_print.obj
+$ python3 ./assembler/assembler_phase1.py mallard/read_add_print.asm mallard/read_add_print.dasm
+$ python3 ./assembler/assembler_phase2.py mallard/read_add_print.dasm mallard/read_add_print.obj
+$ python3 ../project6/duck_machine.py mallard/read_add_print.obj
 Quack! Gimme an int! 22
 Quack! Gimme an int! 77
 Quack!: 99
