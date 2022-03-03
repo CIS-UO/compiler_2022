@@ -476,13 +476,11 @@ we will then break into a list of lines. The `Union` type
 from the `typing` module lets us say that input argument to 
 `crush` can be either `str` or `List[str]`. 
 
-_Spring 2021 warning: Watch out for the PyCharm
-bug that turns "\n" int "\\n" (and if you
-see FOUR backslashes, you know the bug has
-bitten you)._
 
 ```python
-"""Test Codegen:
+"""
+File: test_codegen.py
+Test Codegen:
 Simple unit tests for parts of our code generator.
 More complete tests will require us to go through the
 whole cycle of compiling a Mallard program, assembling the
