@@ -1,0 +1,3 @@
+[submodule "assembler_2022"]
+	path = assembler_2022
+	url = git@github.com:CIS-UO/assembler_2022.git
