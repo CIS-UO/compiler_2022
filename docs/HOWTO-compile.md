@@ -466,7 +466,7 @@ generator is more complete, we'll test it by generating code for
 Mallard programs and then assembling them with our assembler and 
 executing them with our Duck Machine simulator.  
 
-The outline of our test suite module should look pretty familiar by now.  
+The outline of our test suite module (`test_codegen.py`) should look pretty familiar by now.  
 In this one I'll factor out a bit more of the code that we use to 
 compare lists of strings.   
 
@@ -537,7 +537,7 @@ if __name__ == "__main__":
 ```
 
 Then my test case for the code generator of ```IntConst``` be a little simpler
-by inheriting from ```AsmTestCase```:
+by inheriting from ```AsmTestCase``` (in `test_codegen.py`):
 
 
 ```python
@@ -637,7 +637,7 @@ come after DATA lines for constants. By default, the value of
 a variable should be 0 -- it's fine to hard-code that value when you 
 create the variable's DATA line.  I'll leave that to you.  
 
-We can test it in the same way: 
+We can test it in the same way (in `test_codegen.py`): 
 
 ```python
 class Test_Var_Gen(AsmTestCase):
@@ -670,7 +670,7 @@ stores the value in the variable on its left hand side.  Easy peasy!
         context.add_line(f"   STORE  {target},{loc}")
 ``` 
 
-And a test: 
+And a test (in `test_codegen.py`): 
 
 ```python
 class Test_Assign_Gen(AsmTestCase):
@@ -858,7 +858,7 @@ it in ```Plus```, ```Minus```, etc:
 
 I leave the rest of the binary operations to you. We can 
 perform some very simple test cases to make sure we 
-didn't forget any of the basic operations. 
+didn't forget any of the basic operations (in `test_codegen.py`). 
 
 ```python
 class Test_Binops_Gen(AsmTestCase):
@@ -1151,7 +1151,7 @@ Now it is easy to write ```Abs.gen```:
 Again we can create some very simple automated unit tests, 
 but for confidence that we not only got what we expected but 
 also something that works, we'll want to compile and run a
-simple program.  First, the unit test cases: 
+simple program.  First, the unit test cases (in `test_codegen.py`): 
 
 ```python
 class Test_Unops_Gen(AsmTestCase):
@@ -1337,7 +1337,7 @@ for a very simple if/then/else block, compacting it down to a single line.
 You will need to fill in code generation for the other comparisons:  NE (not equal), LT (less than), LE (less than 
 or equal, which I prefer to pronounce as "at most"), GT (greater than), and GE (greater than or equal, which 
 I prefer to pronounce as "at least").  Here are some test cases 
-to check them: 
+to check them (in `test_codegen.py`): 
 
 ```python
 class Test_Condjump(AsmTestCase):
@@ -1570,7 +1570,7 @@ for ```While``` can therefore be
         context.add_line(f"{loop_exit}:")
 ```
 
-Here's a simple unit test: 
+Here's a simple unit test (in `test_codegen.py`): 
 
 ```python
 class Test_While_Gen(AsmTestCase):
@@ -1698,7 +1698,7 @@ jump to the *else* part.
  All the basic parts (checks, labels, and jumps) are present
  in the ```While``` code generation.  
  
- This unit test assumes you use "else" as the prefix for the 
+ This unit test (in `test_codegen.py`) assumes you use "else" as the prefix for the 
  label of an *else* part and "fi" as the prefix for the label 
  at the end of an *if/else/fi* construct, i.e., you call 
  ```context.new_label("else")``` and ```context.new_label("fi")```. 
