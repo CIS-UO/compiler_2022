@@ -320,7 +320,7 @@ We'll add some methods to this Context class soon, but it will
 be easier to think about what they should look like if we start 
 building some ```gen``` methods that use them. 
 
-## IntConst.gen
+## IntConst.gen (expr.py)
 
 Recall that our first Mallard program is to be ```x = 7;```. 
 That will be represented as 
@@ -655,7 +655,7 @@ class Test_Var_Gen(AsmTestCase):
         self.codeEqual(generated, expected)
 ```
 
-## Assign.gen
+## Assign.gen (expr.py)
 
 We are almost to the point of generating the tiniest real program, 
 ```x = 7;```.  We need code for an assignment.  An assignment generates 
@@ -774,7 +774,7 @@ var_x:   DATA 0
 #Compilation complete
 ```
 
-## Seq.gen
+## Seq.gen  (expr.py)
 
 Emboldened by success, we may move on to a program that 
 contains *two* assignment statements, or even *three*. 
@@ -818,7 +818,7 @@ var_z:   DATA 0
 #Compilation complete
 ```
 
-## Binop.gen
+## Binop.gen  (expr.py)
 
 For binary operations ```Plus```, ```Minus```, 
 ```Div```, and ```Mul```, we can factor out much of the 
@@ -996,7 +996,7 @@ var_z:   DATA 0
 #Compilation complete
 ```
 
-## Print.gen
+## Print.gen (expr.py)
 
 As we can generate more complex programs, it will 
 get harder and harder to tell whether the code generation 
@@ -1070,7 +1070,7 @@ Quack!: 15
 Halted
 ```
 
-## Read.gen
+## Read.gen  (expr.py)
 
 We might as well complement the output with input.  It will be 
 very similar, except that it will read a value into the 
@@ -1104,7 +1104,7 @@ test for *read* and *print*!  (It's not impossible, but the test
 cases would be far more complicated than the code we are
 testing.)
 
-## Negation and absolute value
+## Negation and absolute value (expr.py)
 
 We have *almost* taken care of all the arithmetic operations, but we have 
 the unary operations ```Neg``` and ```Abs``` to go.  Negation is simple: 
@@ -1207,7 +1207,7 @@ print absdiff;
 print neg;
 ```
 
-## Control flow: While.gen
+## Control flow: While.gen (expr.py)
 
 Our programs are very simple sequences of instructions 
 so far.  Mallard has two branching control flow 
@@ -1676,7 +1676,7 @@ I am not going to bother writing a unit test case for ```Pass```,
 but instead we will write test cases for *if* statements 
 with and without *else* clauses. 
 
-## If.gen 
+## If.gen  (expr.py)
  
 Now 
 you should be ready to figure out code generation for *if/else/fi*.  
